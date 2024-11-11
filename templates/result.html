@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Analysis Results</h2>
+
+        <div class="section-title">
+            <h4>Work Experience Analysis</h4>
+        </div>
+        {% if work_analysis %}
+            <ul>
+                {% for bullet in work_analysis %}
+                    <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No work experiences found.</p>
+        {% endif %}
+
+        <div class="section-title">
+            <h4>Skills Classification</h4>
+        </div>
+        {% if skills %}
+            {% for category, skills_list in skills.items() %}
+                <h5>{{ category }}</h5>
+                <ul>
+                    {% for skill in skills_list %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No skills identified.</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Analyze Another Resume</a>
+    </div>
+</body>
+</html>
